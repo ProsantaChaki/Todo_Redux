@@ -3,8 +3,6 @@ import AddList from "./components/AddList";
 import List from "./components/List";
 import { connect } from 'react-redux';
 import * as actionTypes from './redux/actions';
-
-
 import './App.css';
 
 class ToDo extends Component {
@@ -32,10 +30,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        // onAddedPerson: (name, age) => dispatch({type: actionTypes.ADD_PERSON,personData:{name:name, age:age}}),
+        //addedItem: (name) => dispatch({ type:'ADD_TO_DO' , name:name}),
+        addedItem: (name) => dispatch(actionTypes.add(name)),
 
-        addedItem: (name) => dispatch({ type:'ADD_TO_DO' , name:name}),
-        // onRemovedItem: (id) => dispatch({type: actionTypes.DELETE_TO_DO, Id: id})
+        onRemovedItem: (id) => dispatch(actionTypes.remove(id))
     }
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ToDo);

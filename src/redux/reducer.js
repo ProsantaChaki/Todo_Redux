@@ -1,24 +1,32 @@
 import *  as actionTypes from './actions';
 
+
+
+
+
 const initialState = {
-    items:[]
+    items: []
 };
 
 const reducer = ( state = initialState, action ) => {
-    console.log(action)
-    switch ( action.type ){
+    switch ( action.type ) {
         case actionTypes.ADD_TO_DO:
             const newItem = {
-                name:action.listData.name,
-                id: Math.random()
+                id: Math.random(), // not really unique but good enough here!
+                name: action.name,
             };
-            return{
+            return {
                 ...state,
                 items: state.items.concat( newItem )
             };
-
+        case actionTypes.DELETE_TO_DO:
+            return {
+                ...state,
+                items: state.items.filter(item => item.id !== action.itemId)
+            }
     }
     return state;
-}
+};
 
-export default reducer();
+export default reducer;
+
